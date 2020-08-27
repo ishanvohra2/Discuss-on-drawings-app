@@ -30,6 +30,14 @@
             android:orientation="vertical"
             android:layout_gravity="center">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="Tap anywhere on the image to add a marker"
+                android:textSize="17sp"
+                android:textAlignment="center"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -54,14 +62,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:text="Tap anywhere on the image to add a marker"
+                android:text="Select an item from the below list to see the position of the marker"
                 android:textSize="17sp"
                 android:textAlignment="center"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/markers_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/marker_list_item"/>
 
         </LinearLayout>
 
