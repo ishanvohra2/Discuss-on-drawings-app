@@ -1,6 +1,7 @@
 package com.ishanvohra.discussondrawingsapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.ishanvohra.discussondrawingsapp.R;
+import com.ishanvohra.discussondrawingsapp.activities.DrawingActivity;
 import com.ishanvohra.discussondrawingsapp.data.Drawing;
 
 import java.util.ArrayList;
@@ -60,7 +62,7 @@ public class DrawingListAdapter extends RecyclerView.Adapter<DrawingListAdapter.
 
     @Override
     public void onBindViewHolder(final @NonNull MyViewHolder holder, int position) {
-        Drawing drawing = dataSet.get(position);
+        final Drawing drawing = dataSet.get(position);
 
         holder.titleTv.setText(drawing.getTitle());
 
@@ -69,6 +71,15 @@ public class DrawingListAdapter extends RecyclerView.Adapter<DrawingListAdapter.
             @Override
             public void onSuccess(Uri uri) {
                 Glide.with(context).load(uri).into(holder.imageView);
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DrawingActivity.class);
+                intent.putExtra("drawingId", drawing.getDrawingId());
+                context.startActivity(intent);
             }
         });
 
