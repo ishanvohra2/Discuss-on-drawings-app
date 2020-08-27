@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -20,7 +24,7 @@ public class DrawingActivity extends AppCompatActivity {
 
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
-    private ImageView imageView;
+    private ImageView imageView, markerImg;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -39,6 +43,7 @@ public class DrawingActivity extends AppCompatActivity {
         });
 
         imageView = findViewById(R.id.drawing_activity_iv);
+        markerImg = findViewById(R.id.drawing_activity_marker_iv);
 
         storage.getReference().child("drawings/" + drawingId + "/drawing.jpeg").getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -51,7 +56,11 @@ public class DrawingActivity extends AppCompatActivity {
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                Toast.makeText(DrawingActivity.this, "X = " + motionEvent.getX() + " , Y = " + motionEvent.getY(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DrawingActivity.this, "X = " + motionEvent.getX() + " , Y = "
+                        + motionEvent.getY(), Toast.LENGTH_SHORT).show();
+                markerImg.setVisibility(View.VISIBLE);
+                markerImg.setPadding((int) motionEvent.getX(),(int) motionEvent.getY(), 0,0);
+
                 return false;
             }
         });
