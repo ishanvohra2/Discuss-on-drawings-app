@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -64,5 +65,12 @@ public class DrawingActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private Dialog onCreateDialog(float x, float y){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.add_marker_dialog_layout);
+
+        return dialog;
     }
 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Discuss on drawings app</string>
+
+    <string-array name="marker_types">
+        <item>Label</item>
+        <item>Person</item>
+        <item>Discussion Thread</item>
+    </string-array>
 </resources>
