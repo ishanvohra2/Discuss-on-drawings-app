@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "848269273185",
+    "firebase_url": "https://dining-out-b14fa.firebaseio.com",
+    "project_id": "dining-out-b14fa",
+    "storage_bucket": "dining-out-b14fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848269273185:android:e17334dd3dd28a0de22220",
+        "android_client_info": {
+          "package_name": "com.ishanvohra.discussondrawingsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848269273185-dvugbir9lrc3gim2vguga380p25ijqc8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ishanvohra.discussondrawingsapp",
+            "certificate_hash": "fba3e2c71ce3825668097e1d3eee585fdc70a48a"
+          }
+        },
+        {
+          "client_id": "848269273185-rvep79h91on277llhsu29k5a8f18d87l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEnGSNEuKv0rvzvlfJtRViAI2fMsvn2cQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848269273185-rvep79h91on277llhsu29k5a8f18d87l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

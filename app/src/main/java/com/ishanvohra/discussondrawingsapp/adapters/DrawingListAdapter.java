@@ -1,6 +1,7 @@
 package com.ishanvohra.discussondrawingsapp.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.ishanvohra.discussondrawingsapp.R;
 import com.ishanvohra.discussondrawingsapp.data.Drawing;
 
@@ -22,6 +26,7 @@ public class DrawingListAdapter extends RecyclerView.Adapter<DrawingListAdapter.
 
     private Context context;
     private ArrayList<Drawing> dataSet;
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
 
     public void setDrawingList(ArrayList<Drawing> dataSet){
         this.dataSet = dataSet;
@@ -54,11 +59,18 @@ public class DrawingListAdapter extends RecyclerView.Adapter<DrawingListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+    public void onBindViewHolder(final @NonNull MyViewHolder holder, int position) {
         Drawing drawing = dataSet.get(position);
 
         holder.titleTv.setText(drawing.getTitle());
+
+        storage.getReference().child("drawings/" + drawing.getDrawingId() + "/drawing.jpeg")
+                .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(context).load(uri).into(holder.imageView);
+            }
+        });
 
     }
 
