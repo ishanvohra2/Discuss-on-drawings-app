@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ishanvohra.discussondrawingsapp.activities.AddDrawingActivity;
 import com.ishanvohra.discussondrawingsapp.adapters.DrawingListAdapter;
 import com.ishanvohra.discussondrawingsapp.data.Drawing;
 
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new DrawingListAdapter(this, new ArrayList<Drawing>());
         recyclerView.setAdapter(adapter);
 
-        databaseReference.child("drawings").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("drawings").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
@@ -69,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, AddDrawingActivity.class);
+                startActivity(intent);
             }
         });
     }

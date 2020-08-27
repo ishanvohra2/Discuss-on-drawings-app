@@ -32,6 +32,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -66,8 +67,10 @@ public class DrawingActivity extends AppCompatActivity implements MarkerListAdap
         setContentView(R.layout.activity_drawing);
 
         drawingId = getIntent().getStringExtra("drawingId");
+        String title = getIntent().getStringExtra("title");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(title);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +114,8 @@ public class DrawingActivity extends AppCompatActivity implements MarkerListAdap
         markerListAdapter = new MarkerListAdapter(this, new ArrayList<Marker>(), this);
         recyclerView.setAdapter(markerListAdapter);
 
-        databaseReference.child("markers").addValueEventListener(new ValueEventListener() {
+        Query query = databaseReference.child("markers");
+        query.orderByChild("drawingId").equalTo(drawingId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){

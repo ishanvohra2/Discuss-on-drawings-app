@@ -79,6 +79,7 @@ public class DrawingListAdapter extends RecyclerView.Adapter<DrawingListAdapter.
             public void onClick(View view) {
                 Intent intent = new Intent(context, DrawingActivity.class);
                 intent.putExtra("drawingId", drawing.getDrawingId());
+                intent.putExtra("title", drawing.getTitle());
                 context.startActivity(intent);
             }
         });
