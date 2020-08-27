@@ -72,7 +72,7 @@
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/article_text"
+                        android:id="@+id/add_marker_dialog_content_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:id="@+id/new_article_main_image"
+                            android:id="@+id/add_marker_dialog_iv"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
                             android:layout_margin="8dp"
