@@ -3,6 +3,15 @@ package com.ishanvohra.discussondrawingsapp.data;
 public class Marker {
     private String markerId, drawingId, type, contentEt;
     private float x,y;
+    private long additionTime;
+
+    public long getAdditionTime() {
+        return additionTime;
+    }
+
+    public void setAdditionTime(long additionTime) {
+        this.additionTime = additionTime;
+    }
 
     public float getX() {
         return x;
