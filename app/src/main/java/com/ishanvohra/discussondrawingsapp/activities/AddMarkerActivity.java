@@ -32,6 +32,7 @@ import com.ishanvohra.discussondrawingsapp.R;
 import com.ishanvohra.discussondrawingsapp.data.Marker;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 
 public class AddMarkerActivity extends AppCompatActivity {
 
@@ -110,6 +111,7 @@ public class AddMarkerActivity extends AppCompatActivity {
                 marker.setType("Label");
                 marker.setX(xVal);
                 marker.setY(yVal);
+                marker.setAdditionTime(new Date().getTime());
 
                 if(labelImg.getDrawable() != null){
                     uploadImage(marker.getMarkerId());

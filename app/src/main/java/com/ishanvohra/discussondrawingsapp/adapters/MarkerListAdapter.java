@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.github.curioustechizen.ago.RelativeTimeTextView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,6 +40,7 @@ public class MarkerListAdapter extends RecyclerView.Adapter<MarkerListAdapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView userNameTv, labelTv;
+        private RelativeTimeTextView timeTv;
         private ImageView imageView;
 
         public MyViewHolder(View itemView){
@@ -46,6 +48,7 @@ public class MarkerListAdapter extends RecyclerView.Adapter<MarkerListAdapter.My
             userNameTv = itemView.findViewById(R.id.marker_list_item_username_tv);
             labelTv = itemView.findViewById(R.id.marker_list_item_title_tv);
             imageView = itemView.findViewById(R.id.marker_list_item_iv);
+            timeTv = itemView.findViewById(R.id.marker_list_item_time_tv);
         }
     }
 
@@ -69,6 +72,7 @@ public class MarkerListAdapter extends RecyclerView.Adapter<MarkerListAdapter.My
         final Marker marker = dataSet.get(position);
 
         holder.labelTv.setText(marker.getContentEt());
+        holder.timeTv.setReferenceTime(marker.getAdditionTime());
 
         storage.getReference().child("markers/" + marker.getMarkerId() + "/image.jpeg")
                 .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
