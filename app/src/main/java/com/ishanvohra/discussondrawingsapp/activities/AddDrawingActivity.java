@@ -24,6 +24,10 @@ import com.ishanvohra.discussondrawingsapp.R;
 import com.ishanvohra.discussondrawingsapp.data.Drawing;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class AddDrawingActivity extends AppCompatActivity {
 
@@ -77,6 +81,7 @@ public class AddDrawingActivity extends AppCompatActivity {
                 drawing.setDrawingId(databaseReference.push().getKey());
                 drawing.setTitle(titleEt.getText().toString());
                 drawing.setImgPath(uploadImage(drawing.getDrawingId()));
+                drawing.setAdditionTime(new Date().getTime());
 
                 databaseReference.child("drawings").child(drawing.getDrawingId()).setValue(drawing);
                 finish();

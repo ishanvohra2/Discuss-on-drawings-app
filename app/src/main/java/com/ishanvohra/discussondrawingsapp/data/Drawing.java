@@ -4,6 +4,16 @@ public class Drawing {
 
     private String drawingId, imgPath, title;
 
+    private long additionTime;
+
+    public long getAdditionTime() {
+        return additionTime;
+    }
+
+    public void setAdditionTime(long additionTime) {
+        this.additionTime = additionTime;
+    }
+
     public String getDrawingId() {
         return drawingId;
     }
