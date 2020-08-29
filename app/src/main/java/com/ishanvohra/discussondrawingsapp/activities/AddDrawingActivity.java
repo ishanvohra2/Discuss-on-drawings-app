@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +34,7 @@ public class AddDrawingActivity extends AppCompatActivity {
 
     private EditText titleEt;
     private ImageView imageView;
+    private TextView placeHolderTv;
     private Button addImgBtn, postBtn;
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -57,6 +59,7 @@ public class AddDrawingActivity extends AppCompatActivity {
         imageView = findViewById(R.id.add_drawing_iv);
         addImgBtn = findViewById(R.id.add_drawing_upload_img_btn);
         postBtn = findViewById(R.id.add_drawing_upload_add_btn);
+        placeHolderTv = findViewById(R.id.add_drawing_label_tv);
 
         addImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +100,12 @@ public class AddDrawingActivity extends AppCompatActivity {
                 imageView.setImageURI(data.getData());
             }
         }
+
+        if(imageView.getDrawable() == null){
+            placeHolderTv.setVisibility(View.VISIBLE);
+        }
+        else
+            placeHolderTv.setVisibility(View.GONE);
     }
 
     public void openGallery() {

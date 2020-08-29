@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -39,6 +40,7 @@ public class AddMarkerActivity extends AppCompatActivity {
     private EditText titleEt;
     private ImageView imageView, labelImg, markerImg;
     private Button addImgBtn, postBtn;
+    private TextView labelTv;
 
     private static final int PICK_IMAGE = 100;
     private String drawingId;
@@ -69,6 +71,7 @@ public class AddMarkerActivity extends AppCompatActivity {
         markerImg = findViewById(R.id.add_marker_marker_iv);
         addImgBtn = findViewById(R.id.add_marker_upload_img_btn);
         postBtn = findViewById(R.id.add_marker_add_btn);
+        labelTv = findViewById(R.id.add_marker_label_tv);
 
         storage.getReference().child("drawings/" + drawingId + "/drawing.jpeg").getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -138,6 +141,12 @@ public class AddMarkerActivity extends AppCompatActivity {
                 labelImg.setImageURI(data.getData());
             }
         }
+
+        if(imageView.getDrawable() == null){
+            labelTv.setVisibility(View.VISIBLE);
+        }
+        else
+            labelTv.setVisibility(View.GONE);
     }
 
     public void openGallery() {
