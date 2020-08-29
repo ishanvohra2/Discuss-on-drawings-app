@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.github.curioustechizen.ago.RelativeTimeTextView;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -75,10 +77,15 @@ public class MarkerListAdapter extends RecyclerView.Adapter<MarkerListAdapter.My
         holder.timeTv.setReferenceTime(marker.getAdditionTime());
 
         storage.getReference().child("markers/" + marker.getMarkerId() + "/image.jpeg")
-                .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                .getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(context).load(uri).into(holder.imageView);
+            public void onComplete(@NonNull Task<Uri> task) {
+                if(task.isSuccessful()){
+                    Glide.with(context).load(task.getResult()).into(holder.imageView);
+                }
+                else{
+                    holder.imageView.setVisibility(View.GONE);
+                }
             }
         });
 

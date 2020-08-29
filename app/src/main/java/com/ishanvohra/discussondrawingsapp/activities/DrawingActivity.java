@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -58,6 +59,7 @@ public class DrawingActivity extends AppCompatActivity implements MarkerListAdap
 
     private ImageView imageView, markerImg;
     private RecyclerView recyclerView;
+    private RelativeLayout setMarkerLayout;
 
     private String drawingId;
 
@@ -86,6 +88,7 @@ public class DrawingActivity extends AppCompatActivity implements MarkerListAdap
 
         imageView = findViewById(R.id.drawing_activity_iv);
         markerImg = findViewById(R.id.drawing_activity_marker_iv);
+        setMarkerLayout = findViewById(R.id.drawing_set_marker_layout);
 
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
